@@ -36,9 +36,8 @@ jobs:
           apt-get install -q -y cmake texlive texlive-latex-recommended texlive-extra-utils texlive-latex-extra texlive-font-utils libxapian-dev ghostscript libxml2-utils graphviz qt5-default
         run: |
           mkdir build
+          cd build
           cmake \
-            -S .. \
-            -B build \
             -G "Unix Makefiles" \
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
             -Dbuild_doc=YES \
@@ -46,7 +45,8 @@ jobs:
             -Dbuild_search=YES \
             -Dbuild_app=YES \
             -Dbuild_parse=YES \
-            -Dbuild_xmlparser=YES
+            -Dbuild_xmlparser=YES \
+            ..
           cmake --build build --parallel $(nproc --all)
           cmake --build build --target tests TEST_FLAGS="--xml --xmlxsd --xhtml --docbook --rtf"
           cmake --build build --target docs
