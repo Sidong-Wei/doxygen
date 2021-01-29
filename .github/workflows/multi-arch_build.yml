@@ -9,8 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        - arch: s390x,
-          distro: ubuntu18.04,
+        - arch: s390x
+          distro: ubuntu18.04
           build_type: "Release"
         - arch: s390x
           distro: ubuntu18.04
