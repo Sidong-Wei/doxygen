@@ -4,24 +4,17 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: ${{ matrix.config.name }}
+    name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
       matrix:
-        config:
-        - {
-            name: "S390X Release Build",
-            arch: s390x,
-            distro: ubuntu18.04,
-            build_type: "Release",
-          }
-        - {
-            name: "S390X Debug Build",
-            arch: s390x,
-            distro: ubuntu18.04,
-            build_type: "Debug",
-          }
+        - arch: s390x,
+          distro: ubuntu18.04,
+          build_type: "Release"
+        - arch: s390x
+          distro: ubuntu18.04
+          build_type: "Debug"
 
     steps:
     - uses: actions/checkout@v1
@@ -45,7 +38,7 @@ jobs:
             COMMAND cmake
               -S .
               -B build
-              -D CMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
+              -D CMAKE_BUILD_TYPE=${{ matrix.build_type }}
               -G "Unix Makefiles"
               -Dbuild_doc=YES
               -Dbuild_wizard=YES
