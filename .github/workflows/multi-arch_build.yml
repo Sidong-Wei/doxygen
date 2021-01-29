@@ -47,6 +47,6 @@ jobs:
             -Dbuild_parse=YES \
             -Dbuild_xmlparser=YES \
             ..
-          cmake --build build --parallel $(nproc --all)
-          cmake --build build --target tests TEST_FLAGS="--xml --xmlxsd --xhtml --docbook --rtf"
-          cmake --build build --target docs
+          cmake --build . --parallel $(nproc --all)
+          cmake --build . --target tests TEST_FLAGS="--xml --xmlxsd --xhtml --docbook --rtf"
+          cmake --build . --target docs
