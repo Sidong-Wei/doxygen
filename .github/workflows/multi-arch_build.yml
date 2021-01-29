@@ -36,7 +36,7 @@ jobs:
           apt-get install -q -y cmake texlive texlive-latex-recommended texlive-extra-utils texlive-latex-extra texlive-font-utils libxapian-dev ghostscript libxml2-utils graphviz qt5-default
         run: |
           cmake \
-            -S . \
+            -S "/home/runner/work/doxygen/doxygen" \
             -B build \
             -G "Unix Makefiles" \
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
