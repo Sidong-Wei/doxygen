@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
+    name: Build on ${{ matrix.distro }} ${{ matrix.arch }} ${{ martix.build_type }}
     runs-on: ubuntu-18.04
     strategy:
       matrix:
